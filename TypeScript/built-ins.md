@@ -14,6 +14,20 @@ console.log(result);
 ## `.find()`
 - 提供されたテスト関数を満たす配列内の最初の要素を返す
 - テスト関数を満たす値がない場合は、 `undefined` を返す
+- `.find()`を使わない方が良い場合
+	- 配列内で見つかった要素の**インデックス**が必要な場合は、[`findIndex()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) を使用する
+	- **値のインデックス**を検索する必要がある場合は、[`indexOf()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) を使用する([`findIndex()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) と似ていますが、それぞれの要素の等価性はテスト関数ではなく値でチェックします)
+	- 配列内に値が**存在する**かどうかを調べる必要がある場合は、 [`includes()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) 
+	- 指定したテスト関数を満たす要素があるかどうかを調べる必要がある場合は、 [`some()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+
+```js
+const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find((element) => element > 10);
+
+console.log(found);
+// Expected output: 12
+```
 
 ## `.flatMap()`
 - `map()` で各要素を変換し、その直後に `flat(1)` で 1 段階だけ配列を平たくする
