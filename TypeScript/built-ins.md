@@ -1,3 +1,5 @@
 ## `.filter()`
 
 ## `.find()`
+
+## `.flatMap()`
