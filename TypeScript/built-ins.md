@@ -15,7 +15,7 @@ console.log(result);
 - 提供されたテスト関数を満たす配列内の最初の要素を返す
 - テスト関数を満たす値がない場合は、 `undefined` を返す
 - `.find()`を使わない方が良い場合
-	- 配列内で見つかった要素の**インデックス**が必要な場合は、[`findIndex()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) を使用する
+	- 配列内で見つかった要素の**インデックス**が必要な場合は、[`findIndex()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) 
 	- **値のインデックス**を検索する必要がある場合は、[`indexOf()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) を使用する([`findIndex()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) と似ていますが、それぞれの要素の等価性はテスト関数ではなく値でチェックします)
 	- 配列内に値が**存在する**かどうかを調べる必要がある場合は、 [`includes()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) 
 	- 指定したテスト関数を満たす要素があるかどうかを調べる必要がある場合は、 [`some()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
@@ -52,3 +52,25 @@ arr1.flatMap((x) => x.split(" "));
 ```
 
 ## `reduce()`
+
+
+---
+## `.indexOf()`と`.findIndex()`の違い
+- **`indexOf`**: “**この値そのもの** がどこにある？”
+- **`findIndex`**: “**こういう条件** を満たす要素はどこ？”
+
+```js
+// 1. オブジェクト配列で「id:42」を探す
+const users = [{id: 10}, {id: 42}, {id: 99}];
+const idx = users.findIndex(u => u.id === 42); // 1
+// indexOf では “同じ参照のオブジェクト” がない限り見つからない
+
+// 2. 文字列配列で `'apple'` を探す
+const fruits = ['banana', 'apple', 'orange'];
+fruits.indexOf('apple');      // 1 ← シンプルで速い
+fruits.findIndex(f => f==='apple'); // 同じ結果だが冗長
+
+// 3. `NaN` を含む配列
+[NaN, 1, 2].indexOf(NaN);             // -1  ← 見つからない
+[NaN, 1, 2].findIndex(Number.isNaN);  // 0   ← 発見
+```
