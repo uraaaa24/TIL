@@ -53,6 +53,10 @@ arr1.flatMap((x) => x.split(" "));
 
 ## `reduce()`
 - 配列 → 1 つの値（数・オブジェクト・配列・Promise…何でも）
+- 初期値を必ず書く
+	- **空配列でエラー**しない
+	- **型がハッキリ**する
+	    - 例: `reduce<string[]>(..., [])` → 戻り値は常に `string[]`
 
 ```js
 array.reduce(
@@ -62,6 +66,63 @@ array.reduce(
   initialValue
 );
 
+```
+
+```js
+// 1. 合計を出す
+const nums = [3, 4, 5];
+
+const total = nums.reduce((acc, cur) => acc + cur, 0);
+// ① acc=0, cur=3 → 0+3 = 3
+// ② acc=3, cur=4 → 3+4 = 7
+// ③ acc=7, cur=5 → 7+5 = 12  ← これが戻り値
+
+// 2. 配列 → オブジェクト へ変形
+type User = { id: string; name: string };
+
+const users: User[] = [
+  { id: 'u1', name: 'Alice' },
+  { id: 'u2', name: 'Bob'  }
+];
+
+const byId = users.reduce<Record<string, User>>(
+  (acc, user) => {
+    acc[user.id] = user;   // 箱(オブジェクト)に格納
+    return acc;            // 新しい箱として返す
+  },
+  {}                        // 最初は空オブジェクト
+);
+
+/*
+byId は:
+{
+  u1: { id:'u1', name:'Alice' },
+  u2: { id:'u2', name:'Bob' }
+}
+*/
+
+// 3. グループ分け
+const pets = [
+  { type: 'cat',  name: 'Momo' },
+  { type: 'dog',  name: 'Pochi' },
+  { type: 'cat',  name: 'Kuro' }
+];
+
+const grouped = pets.reduce<Record<string, string[]>>(
+  (acc, pet) => {
+    (acc[pet.type] ??= []).push(pet.name);
+    return acc;
+  },
+  {}
+);
+
+/*
+grouped は:
+{
+  cat: ['Momo', 'Kuro'],
+  dog: ['Pochi']
+}
+*/
 ```
 
 ---
