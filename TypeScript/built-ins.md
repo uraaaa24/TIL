@@ -52,7 +52,17 @@ arr1.flatMap((x) => x.split(" "));
 ```
 
 ## `reduce()`
+- 配列 → 1 つの値（数・オブジェクト・配列・Promise…何でも）
 
+```js
+array.reduce(
+  // 各反復で **累積値 (`acc`) と現在要素 (`cur`)** を受け取り、新しい累積値を返す
+  (acc, cur) => newAcc,
+  // acc の 初期値（※ 省くとバグの温床になるので 必ず渡す と覚える）
+  initialValue
+);
+
+```
 
 ---
 ## `.indexOf()`と`.findIndex()`の違い
