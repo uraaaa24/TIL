@@ -3,4 +3,6 @@
 	- JavaScriptのコード内にHTMLタグのような構文が埋め込み可能になる
 
 # JSXとECMAScriptの違い
-JavaScir
+- **JavaScript:** EcmaScriptという言語仕様で規定されている
+- **JSX:** JavaScriptの構文を独自に拡張した言語（JavaScriptの言語仕様にはない）
+- ブラウザがJavaScript
