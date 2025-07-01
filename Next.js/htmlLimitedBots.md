@@ -6,3 +6,4 @@
 	- ボットごとに細かく制御したい場合、`next.config.js`の`htmlLimitedBots`オプションで正規表現を上書きしてカスタマイズ可能
 
 https://nextjs.org/docs/app/api-reference/config/next-config-js/htmlLimitedBots
+https://github.com/vercel/next.js/issues/79135
